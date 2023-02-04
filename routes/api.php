@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::apiResource("/users", \App\Models\User::class);
-Route::get("/users", [\App\Models\User::class, 'index']);
-Route::get("/users/{id}", [\App\Models\User::class, 'show']);
-Route::post("/users", [\App\Models\User::class, 'store']);
-Route::patch("/users/{id}", [\App\Models\User::class, 'update']);
-Route::delete("/users/{id}", [\App\Models\User::class, 'destory']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function(){
+  \App\Helpers\Routes\RouteHelper::includeRouteFiles(__DIR__ . '/api/v1');
 });
+
+
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+?>
